@@ -16,9 +16,9 @@ TARGET = test
 
 # Compiler flags. Compile ANSI build only if CHARSET=ANSI.
 ifeq ($(CHARSET), ANSI)
-  CFLAGS = -O2 -std=c11  $(WARNS) -Iinclude
+  CFLAGS = -O2 -std=c11 $(WARNS) -Iinclude
 else
-  CFLAGS = -O2 -std=c11 -D UNICODE -D _UNICODE -D _WIN32_IE=0x0500 -D WINVER=0x0500 $(WARNS) -Iinclude
+  CFLAGS = -O2 -std=c11 -D UNICODE $(WARNS) -Iinclude
 endif
 
 # Linker flags
@@ -32,8 +32,8 @@ all: bin/$(TARGET)
 
 # Delete all build output
 clean:
-	[ -e bin/$(TARGET) ] && rm -rf bin/$(TARGET)
-	[ -d obj ] && rm -rf obj
+	-[ -e bin/$(TARGET) ] && rm -rf bin/$(TARGET)
+	-[ -d obj ] && rm -rf obj
 	@#if exist bin\$(TARGET) ( del /q bin\$(TARGET) )
 	@#if exist obj\* ( del /q obj\* )
 
